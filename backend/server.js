@@ -5,13 +5,13 @@ const port  = process.env .PORT || 5000
 const app = express()
 //To get products
 app.get('/api/products', (req,res)=>{
-    res.send('To get products')
+    res.status(200).json({message: 'To get products'})
 })
 
 
 //To get orders
 app.get('/api/orders', (req,res)=>{
-    res.send('To get orders')
+    res.status(200).json({message: 'To get orders'})
 })
 
 
