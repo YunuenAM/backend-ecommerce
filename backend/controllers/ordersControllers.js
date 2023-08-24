@@ -3,6 +3,11 @@ const getOrders = (req, res) =>  {
 }
 
 const setOrder = (req, res) =>  {
+    if(!req.body.text){
+        res.status(400)
+        throw new Error('Enter a order please')
+        
+    }
     res.status(201).json({message: 'To create orders'})
 }
 

@@ -3,7 +3,12 @@ const getProducts = (req,res) =>{
 }
 
 const setProduct = (req,res) =>{
-    res.status(200).json({message: 'To create products'})
+    if(!req.body.text){
+        res.status(400)
+        throw new Error('Enter a product')
+      
+    }
+    res.status(201).json({message: 'To create products'})
 }
 
 const updateProduct = (req,res) =>{
