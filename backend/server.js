@@ -3,16 +3,14 @@ const dotenv = require('dotenv').config()
 const port  = process.env .PORT || 5000
 
 const app = express()
-//To get products
-app.get('/api/products', (req,res)=>{
-    res.status(200).json({message: 'To get products'})
-})
+
+app.use('/api/orders', require('./routes/ordersRoutes'))
+
+app.use('/api/products', require('./routes/productsRoutes'))
 
 
-//To get orders
-app.get('/api/orders', (req,res)=>{
-    res.status(200).json({message: 'To get orders'})
-})
+
+
 
 
 app.listen(port, ()=> console.log(`Server started on port ${port}`))
