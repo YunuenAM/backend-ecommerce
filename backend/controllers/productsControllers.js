@@ -36,7 +36,19 @@ const updateProduct = asyncHandler(async (req,res) =>{
 })
 
 const deleteProduct = asyncHandler(async (req,res) =>{
-    res.status(200).json({message: `To delete product ${req.params.id}`})
+
+    const product = await Product.findById(req.params.id)
+    if(!product){
+        res.status(404)
+        throw new Error('The product was not found')
+    }
+    
+    //const deletedOrder = await Order.findByIdAndDelete(req.params.id)
+
+    product.deleteOne()
+
+
+    res.status(200).json({id: product._id })
 })
 
 
