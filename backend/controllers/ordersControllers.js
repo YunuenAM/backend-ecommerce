@@ -21,7 +21,16 @@ const setOrder = asyncHandler(async (req, res) =>  {
 })
 
 const updateOrder =  asyncHandler(async(req, res) =>  {
-    res.status(200).json({message: `To edit order ${req.params.id}`})
+
+    const order = await Order.findById(req.params.id)
+    if(!order){
+        res.status(404)
+        throw new Error('The order was not found')
+    }
+
+    const updatedOrder =  await Order.findByIdAndUpdate(req.params.id, req.body, {new: true})
+
+    res.status(200).json(updatedOrder)
 })
 
 const deleteOrder = asyncHandler(async(req, res) =>  {
