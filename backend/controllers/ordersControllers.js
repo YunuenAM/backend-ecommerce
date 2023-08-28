@@ -1,7 +1,10 @@
 const asyncHandler = require('express-async-handler')
+const Order = require('../models/ordersModel')
 
 const getOrders = asyncHandler(async (req, res) =>  {
-    res.status(200).json({message: 'To get orders'})
+
+    const orders = await Order.find()
+    res.status(200).json(orders)
 })
 
 const setOrder = asyncHandler(async (req, res) =>  {
@@ -10,7 +13,11 @@ const setOrder = asyncHandler(async (req, res) =>  {
         throw new Error('Enter a order please')
         
     }
-    res.status(201).json({message: 'To create orders'})
+    const order = await Order.create({
+        text: req.body.text
+    })
+
+    res.status(201).json(order)
 })
 
 const updateOrder =  asyncHandler(async(req, res) =>  {
