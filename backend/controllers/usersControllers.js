@@ -53,7 +53,7 @@ const loginUser = asyncHandler(async(req,res) => {
          _id: user._id,
          name: user.name,
          email: user.email,
-         token: generateToken(user._id)
+         token: generateToken(user._id, user.name)
       })
    }else{
       res.status(400)
@@ -64,9 +64,9 @@ const loginUser = asyncHandler(async(req,res) => {
  })
 
  //To generate JWT
- const  generateToken = (id)  => {
-   return jwt.sign({id}, process.env.JWT_SECRET,{
-      expiresIn: '30d'
+ const  generateToken = (id,name)  => {
+   return jwt.sign({id, name}, process.env.JWT_SECRET,{
+      expiresIn: '1d'
    })
  }
 
