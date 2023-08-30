@@ -14,6 +14,12 @@ const setProduct = asyncHandler(async (req,res) =>{
         throw new Error('Enter a product')
       
     }
+    //Check if check if the authenticated user is an admin
+
+    if(req.user.role !== 'admin'){
+        res.status(403);
+        throw new Error ('Only admins can create products')
+    }
 
     const product = await  Product.create({
         text: req.body.text
@@ -29,6 +35,11 @@ const updateProduct = asyncHandler(async (req,res) =>{
      res.status(404)  
      throw new Error ('The product was not found')
     }
+    //Check if check if the authenticated user is an admin
+    if(req.user.role !== admin){
+        res.status(403)
+        throw new Error('Only admins can update products')
+    }
     
     const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {new: true})
 
@@ -42,6 +53,13 @@ const deleteProduct = asyncHandler(async (req,res) =>{
         res.status(404)
         throw new Error('The product was not found')
     }
+
+     //Check if check if the authenticated user is an admin
+
+     if(req.user.role !== 'admin'){
+        res.status(403)
+        throw new Error('Only admins can delete products')
+     }
     
     //const deletedOrder = await Order.findByIdAndDelete(req.params.id)
 

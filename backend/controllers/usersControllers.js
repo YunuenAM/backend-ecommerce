@@ -4,8 +4,8 @@ const asyncHandler =  require('express-async-handler')
 const User = require('../models/usersModel')
 
 const registerUser = asyncHandler(async(req,res) => {
-   const {name, email, password} = req.body
-   if (!name || !email || !password){
+   const {name, email, password,role} = req.body
+   if (!name || !email || !password || !role){
       res.status(400)
       throw new Error('please enter all the data')
    }
@@ -27,14 +27,16 @@ const registerUser = asyncHandler(async(req,res) => {
    const user = await User.create({
       name,
       email,
-      password: hashedPassword
+      password: hashedPassword,
+      role
    })
 
    if(user){
       res.status(201).json({
          _id:user._id,
          name: user.name,
-         email: user.email
+         email: user.email,
+         role: user.role
       })
    }else{
       res.status(400)
@@ -53,6 +55,7 @@ const loginUser = asyncHandler(async(req,res) => {
          _id: user._id,
          name: user.name,
          email: user.email,
+         role: user.role,
          token: generateToken(user._id, user.name)
       })
    }else{

@@ -17,9 +17,10 @@ const userSchema = mongoose.Schema({
         required: [true, 'Enter your password please']
     },
 
-    admin: {
-        type: Boolean,
-        default: false
+    role: {
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user'
     }
 },{
     timestamps: true
