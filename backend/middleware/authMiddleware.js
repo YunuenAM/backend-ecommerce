@@ -14,11 +14,11 @@ const protect = asyncHandler(async(req, res, next) =>{
             //To obtain token id user
             req.user = await User.findById(decoded.id).select('-password')
 
-            // Verificar si el usuario tiene el rol de administrador
-            if (req.user.role !== 'admin') {
-                res.status(403);
-                throw new Error('Unauthorized. Admin role required.');
-            }
+            // // Verificar si el usuario tiene el rol de administrador
+            // if (req.user.role !== 'admin') {
+            //     res.status(403);
+            //     throw new Error('Unauthorized. Admin role required.');
+            // }
             ////
             next()
         } catch (error) {
