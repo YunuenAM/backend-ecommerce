@@ -72,7 +72,7 @@ const loginUser = asyncHandler(async(req,res) => {
 
 
  const getUserData = asyncHandler(async(req,res) => {
-    res.json({message: 'My user data'})
+    res.json(req.user)
  })
 module.exports = {
     registerUser,
