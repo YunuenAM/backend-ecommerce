@@ -4,15 +4,15 @@ const {getOrders, setOrder, updateOrder, deleteOrder} = require('../controllers/
 const {protect} = require('../middleware/authMiddleware')
 
 //To get orders
-router.get('/', protect, getOrders)
+router.get('/',  getOrders)
 
 //To create orders
-router.post('/', protect, setOrder)
+router.post('/',  setOrder)
 
 //To edit orders
-router.put('/:id',protect, updateOrder)
+router.put('/:id', protect,updateOrder)
 
 //To delete orders
-router.delete('/:id',protect,deleteOrder)
+router.delete('/:id',protect, deleteOrder)
 
 module.exports = router
