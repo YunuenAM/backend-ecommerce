@@ -5,7 +5,7 @@ const {protect} = require('../middleware/authMiddleware')
 
 
 //To get products
-router.get('/', getProducts)
+router.get('/', protect,getProducts)
 
 
 //To create products
