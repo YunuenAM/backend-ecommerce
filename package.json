@@ -4,7 +4,7 @@
   "description": " backend ecommerce",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon backend/server.js",
+    "start": "node backend/server.js",
     "server": "nodemon backend/server.js"
   },
   "author": "Yunuen AM",
